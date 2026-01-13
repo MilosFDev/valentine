@@ -1,19 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>67 Reasons ❤️</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>67 Reasons</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body, html {
+      margin: 0; padding: 0; height: 100%;
+      display: flex; justify-content: center; align-items: center;
+      background: #fff0f5;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    .slide {
+      display: none;
+      max-width: 90vw;
+      padding: 20px;
+      border-radius: 15px;
+      background: white;
+      box-shadow: 0 6px 20px rgba(255, 77, 109, 0.3);
+    }
+    .active {
+      display: block;
+    }
+    button {
+      margin-top: 30px;
+      padding: 12px 25px;
+      border-radius: 999px;
+      border: none;
+      background: #ff4d6d;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background: #ff758f;
+    }
+  </style>
 </head>
-<body onclick="next()">
+<body>
 
-<div class="container">
-  <div class="counter" id="counter">1 / 67</div>
-  <p id="text">Because you are you.</p>
-  <span class="hint">tap</span>
-</div>
+  <div id="slide1" class="slide active">
+    <h1>Thank you for saying YES! 💖</h1>
+    <p>I'm so happy you're my Valentine.</p>
+    <button onclick="nextSlide()">Next</button>
+  </div>
 
-<script src="script.js"></script>
+  <div id="slide2" class="slide">
+    <h1>67 reasons why I love you</h1>
+    <button onclick="nextSlide()">Next</button>
+  </div>
+
+  <!-- Add more slides here -->
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 2; // Update this as you add more slides
+
+    function nextSlide() {
+      document.getElementById(`slide${currentSlide}`).classList.remove('active');
+      currentSlide++;
+      if (currentSlide > totalSlides) currentSlide = 1; // Loop back if needed
+      document.getElementById(`slide${currentSlide}`).classList.add('active');
+    }
+  </script>
 </body>
 </html>
