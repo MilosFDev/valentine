@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(#ff758c, #ff7eb3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, sans-serif;
+  color: white;
+}
+
+.container {
+  text-align: center;
+  padding: 30px;
+}
+
+.counter {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.6rem;
+  line-height: 1.4;
+}
+
+.hint {
+  display: block;
+  margin-top: 30px;
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
+.buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+button {
+  font-size: 18px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 999px; /* pill shape */
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-weight: 600;
+}
+
+/* YES button */
+#yesBtn {
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+  color: white;
+  box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+}
+
+/* NO button */
+#noBtn {
+  background: #f1f1f1;
+  color: #444;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover / tap effects */
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: scale(0.95);
+}
