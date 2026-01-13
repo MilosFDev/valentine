@@ -6,64 +6,236 @@
   <title>67 Reasons</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    body, html {
-      margin: 0; padding: 0; height: 100%;
-      display: flex; justify-content: center; align-items: center;
-      background: #fff0f5;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-    .slide {
-      display: none;
-      max-width: 90vw;
-      padding: 20px;
-      border-radius: 15px;
-      background: white;
-      box-shadow: 0 6px 20px rgba(255, 77, 109, 0.3);
-    }
-    .active {
-      display: block;
-    }
-    button {
-      margin-top: 30px;
-      padding: 12px 25px;
-      border-radius: 999px;
-      border: none;
-      background: #ff4d6d;
-      color: white;
-      font-size: 18px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background: #ff758f;
-    }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  color: #5a2a2a;
+}
+
+/* Slide container */
+.slide {
+  background: white;
+  padding: 30px 25px;
+  border-radius: 25px;
+  max-width: 400px;
+  box-shadow: 0 15px 40px rgba(255, 77, 109, 0.35);
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
+
+/* Headings */
+h1 {
+  font-size: 2.4rem;
+  margin-bottom: 15px;
+  color: #d6336c;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #e75480;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Paragraphs */
+p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: #7d4a57;
+}
+
+/* Buttons container */
+.slide > div {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Buttons */
+button {
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255, 77, 109, 0.45);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #ff758f, #ff4d6d);
+  transform: translateY(-3px);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Responsive text size */
+@media (max-width: 400px) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  button {
+    font-size: 1rem;
+    padding: 10px 24px;
+  }
+}
   </style>
 </head>
 <body>
 
-  <div id="slide1" class="slide active">
+  <!-- Static first slide -->
+  <div id="introSlide" class="slide">
     <h1>Thank you for saying YES! 💖</h1>
     <p>I'm so happy you're my Valentine.</p>
-    <button onclick="nextSlide()">Next</button>
+    <button onclick="startReasons()">See the reasons</button>
   </div>
 
-  <div id="slide2" class="slide">
-    <h1>67 reasons why I love you</h1>
-    <button onclick="nextSlide()">Next</button>
+  <!-- Dynamic reasons slide -->
+  <div id="reasonSlide" class="slide" style="display:none;">
+    <h2 id="reasonText"></h2>
+    <div>
+      <button onclick="prevReason()">Previous</button>
+      <button onclick="nextReason()">Next</button>
+    </div>
   </div>
 
-  <!-- Add more slides here -->
+  <!-- Optional final slide -->
+  <div id="endSlide" class="slide" style="display:none;">
+    <h1>That's all 67 reasons! ❤️</h1>
+    <p>I love you so much.</p>
+  </div>
 
   <script>
-    let currentSlide = 1;
-    const totalSlides = 2; // Update this as you add more slides
+    const reasons = [
+      "Because you are you",
+  "Because you make me feel calmer",
+  "Because you listen to me",
+  "Because you understand me even when I don’t explain well",
+  "Because you are patient with me",
+  "Because you stay",
+  "Because you care in your own way",
+  "Because you notice small things",
+  "Because you support me",
+  "Because you make bad days better",
+  "Because you make good days even better",
+  "Because you are honest with me",
+  "Because you make me laugh",
+  "Because you don’t judge me",
+  "Because you try",
+  "Because you believe in me",
+  "Because you accept me as I am",
+  "Because you make me feel safe",
+  "Because you are kind",
+  "Because you are real",
+  "Because you make time for me",
+  "Because you are thoughtful",
+  "Because you understand my moods",
+  "Because you don’t give up easily",
+  "Because you make me feel appreciated",
+  "Because you motivate me",
+  "Because you care about my feelings",
+  "Because you make me feel wanted",
+  "Because you are patient when I’m difficult",
+  "Because you know how to calm me down",
+  "Because you remember things about me",
+  "Because you are supportive when I doubt myself",
+  "Because you make me smile without trying",
+  "Because you accept my flaws",
+  "Because you make me feel enough",
+  "Because you choose me",
+  "Because you make me feel understood",
+  "Because you are gentle with me",
+  "Because you respect me",
+  "Because you are trustworthy",
+  "Because you are there when I need you",
+  "Because you make effort",
+  "Because you don’t give up on us",
+  "Because you make me feel lucky",
+  "Because you bring warmth into my life",
+  "Because you make things feel simpler",
+  "Because you support my dreams",
+  "Because you make me feel closer to myself",
+  "Because you make me feel loved",
+  "Because you are consistent",
+  "Because you are comforting",
+  "Because you care even when you’re tired",
+  "Because you make me feel valued",
+  "Because you are sincere",
+  "Because you show love in your own way",
+  "Because you make me feel chosen",
+  "Because you are patient with my silence",
+  "Because you make life softer",
+  "Because you make me feel hopeful",
+  "Because you stay true to yourself",
+  "Because you make me feel seen",
+  "Because you bring peace into my life",
+  "Because you make me want to be better",
+  "Because you are important to me",
+  "Because you make me feel at home",
+  "Because you are special to me",
+  "Because I love you ❤️"
+    ];
 
-    function nextSlide() {
-      document.getElementById(`slide${currentSlide}`).classList.remove('active');
-      currentSlide++;
-      if (currentSlide > totalSlides) currentSlide = 1; // Loop back if needed
-      document.getElementById(`slide${currentSlide}`).classList.add('active');
+    let currentReasonIndex = 0;
+
+    const introSlide = document.getElementById('introSlide');
+    const reasonSlide = document.getElementById('reasonSlide');
+    const endSlide = document.getElementById('endSlide');
+    const reasonText = document.getElementById('reasonText');
+
+    function startReasons() {
+      introSlide.style.display = 'none';
+      reasonSlide.style.display = 'block';
+      currentReasonIndex = 0;
+      showReason();
+    }
+
+    function showReason() {
+      reasonText.textContent = reasons[currentReasonIndex];
+    }
+
+    function nextReason() {
+      currentReasonIndex++;
+      if (currentReasonIndex >= reasons.length) {
+        reasonSlide.style.display = 'none';
+        endSlide.style.display = 'block';
+      } else {
+        showReason();
+      }
+    }
+
+    function prevReason() {
+      if (currentReasonIndex > 0) {
+        currentReasonIndex--;
+        showReason();
+      }
     }
   </script>
 </body>
