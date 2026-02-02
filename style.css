@@ -49,11 +49,26 @@ button {
 }
 
 /* YES button */
-#yesBtn {
+.yes-btn {
   background: linear-gradient(135deg, #ff4d6d, #ff758f);
   color: white;
   box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+  text-decoration: none;   /* uklanja underline */
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.25s ease;
 }
+
+.yes-btn:hover {
+  transform: translateY(-2px);
+}
+
+.yes-btn:active {
+  transform: scale(0.95);
+}
+
 
 /* NO button */
 #noBtn {
@@ -69,4 +84,43 @@ button:hover {
 
 button:active {
   transform: scale(0.95);
+}
+/* SOUND GATE */
+
+.sound-gate {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 999;
+}
+
+.sound-gate h1 {
+  font-size: 2.2rem;
+  color: #d6336c;
+}
+
+.sound-gate p {
+  margin: 15px 0;
+  font-size: 1.1rem;
+  color: #5a2a2a;
+}
+
+.sound-gate button {
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+  color: white;
+  border: none;
+  padding: 14px 36px;
+  border-radius: 999px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(255, 77, 109, 0.45);
+}
+
+.hidden {
+  display: none;
 }
